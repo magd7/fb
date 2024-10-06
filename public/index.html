@@ -4,59 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liink Preview Image Display</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: black;
-            text-align: center;
-            margin-top: 50px;
-        }
-        h1{
-            color: aliceblue;
-        }
-
-        input[type="text"] {
-            background-color: rgb(34, 34, 34);
-            padding: 10px;
-            width: 300px;
-            font-size: 16px;
-            border-radius: 20px;
-            border: 0px;
-        }
-
-        button {
-            color: black;
-            padding: 10px;
-            font-size: 16px;
-            margin-left: 10px;
-            border-radius: 20px;
-            cursor: pointer;
-            background: rgb(255, 102, 0);
-            outline: none;
-            border: 0ch;
-        transition: 1s;        }
-
-        button:hover{
-            background-color: rgb(0, 136, 136);
-            width: 110px;
-            height: 45px;
-
-        }
-
-        .preview-image {
-            margin-top: 20px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-        }
-
-
-
-        .error {
-            color: red;
-            margin-top: 20px;
-        }
-    </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -75,41 +23,8 @@
 
     <div id="zaha" ></div>
 
-    <script>
-async function fetchPreviewImage() {
-    const url = document.getElementById('linkInput').value;
-    const previewContainer = document.getElementById('previewContainer');
-    const errorContainer = document.getElementById('error');
-    const zaha = document.getElementById('zaha')
-    
-    previewContainer.innerHTML = ''; // Clear previous content
-    errorContainer.innerHTML = '';   // Clear previous errors
+    <script src="app.js">
 
-    if (!url) {
-        errorContainer.textContent = "Please enter a valid URL.";
-        return;
-    }
-
-    try {
-        const response = await fetch('/fetch-og-image', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            previewContainer.innerHTML = `<img src="${data.imageUrl}" class="preview-image" alt="Preview Image">`;
-            zaha.innerHTML = `<h1>YABAAAIII</h1>`
-        } else {
-            errorContainer.textContent = data.error;
-        }
-    } catch (error) {
-        console.error(error);
-        errorContainer.textContent = "Error fetching the preview image. Please check the URL.";
-    }
-}
     </script>
 
 </body>
