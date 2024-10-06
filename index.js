@@ -15,6 +15,9 @@ app.get('/favicon.ico', (req, res) => {
     res.sendStatus(204); // No Content
 });
 
+
+app.use(express.static('./public'))
+
 // Endpoint to fetch the OG image from a URL
 app.post('/fetch-og-image', async (req, res) => {
     const { url } = req.body;
