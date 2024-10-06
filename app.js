@@ -4,7 +4,7 @@ const cheerio = require('cheerio'); // For parsing HTML
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
@@ -18,6 +18,11 @@ app.get('/favicon.ico', (req, res) => {
 // Endpoint to fetch the OG image from a URL
 app.post('/fetch-og-image', async (req, res) => {
     const { url } = req.body;
+
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'publi', 'index.html'));
+    });
+    
 
     // Validate URL
     if (!url) {
